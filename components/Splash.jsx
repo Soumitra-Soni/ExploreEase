@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useRef } from "react";
 
 const Splash = () => {
   const navigation = useNavigation();
@@ -22,8 +21,6 @@ const Splash = () => {
   );
 };
 
-export default Splash;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,3 +29,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
 });
+
+export default Splash;

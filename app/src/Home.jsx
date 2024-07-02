@@ -1,114 +1,46 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
 import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai";
-import React, { useState } from "react";
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import BgAnimation from "../../components/BgAnimation";
+import Fonts from "../../components/Fonts";
 import { useNavigation } from "@react-navigation/native";
-import { useForm } from "react-hook-form";
-import InputForm from "../../components/inputForm";
-import LoadingScreen from "../../components/LoadingScreen";
-import { GEMINI_API_KEY } from "@env";
-
-const API_KEY = GEMINI_API_KEY;
-const MODEL_NAME = "gemini-1.5-pro";
 
 const Home = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
   const navigation = useNavigation();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = async (data) => {
-    setIsLoading(true);
-    try {
-      const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({
-        model: MODEL_NAME,
-      });
-
-      const generationConfig = {
-        temperature: 1,
-        topP: 0.95,
-        topK: 64,
-        maxOutputTokens: 12000,
-      };
-      const safetySetting = [
-        {
-          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-          threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-          threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-          threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-          threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-        },
-      ];
-      const chatSession = model.startChat({
-        generationConfig,
-        safetySettings: safetySetting,
-        history: [],
-      });
-
-      const prompt = `
-      Name: ${data.name}
-      Starting Place: ${data.startingPlace}
-      Destination: ${data.destination}
-      Duration: ${data.duration} Days
-      Budget: ${data.budget} INR
-
-      Please provide a detailed day-wise itinerary for the trip, including the following information for each day:
-      1. Famous places to visit with brief descriptions.
-      2. Famous street and restaurant foods to try, including must-visit food spots.
-      3. Good things to do and fun activities available locally.
-      4. Recommendations for good hotels to stay, along with a rough price breakdown.
-      5. Approximate local travel prices.
-      6. Estimated food costs.
-      
-      Ensure the plan aligns with the budget provided and covers the entire duration of the trip.`;
-
-      const result = await chatSession.sendMessage(prompt);
-      const response = result.response;
-      console.log(response.text());
-      navigation.navigate("Detail", { itinerary: response.text() });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const onPress = () => {
+    navigation.navigate("TravelData");
   };
 
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <LoadingScreen style={styles.loading} />
-      ) : (
-        <View style={styles.homeContainer}>
-          <Text style={styles.heading}>Welcome to ExploreEase!</Text>
-          <Text style={styles.text}>
-            Fill up the important details and watch ExploreEase Ease up Your
-            Trip!!
-          </Text>
-          <InputForm control={control} errors={errors} />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit(onSubmit)}
-          >
-            <Text style={styles.buttonText}>Genarate Itinerary</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      <Fonts />
+      <BgAnimation />
+      <StatusBar
+        translucent={true}
+        backgroundColor="#000"
+        barStyle="light-content"
+      />
+      <Text style={styles.heading}>Welcome to</Text>
+      <Text style={styles.heading}>ExploreEase!</Text>
+      <Text style={styles.text}>
+        Your Personal AI Based Travel Itinerary Generator
+      </Text>
+
+      <View style={styles.socials}>
+        <Ionicons name="logo-github" size={30} color="#fff" />
+        <Ionicons name="logo-linkedin" size={30} color="#fff" />
+        <Ionicons name="logo-twitter" size={30} color="#fff" />
+      </View>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Ionicons name="arrow-forward" size={60} color="#000" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -116,37 +48,54 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "centre",
-    alignItems: "centre",
-    backgroundColor: "#fff",
-  },
-  homeContainer: {
-    width: "100%",
+    justifyContent: "center",
     alignItems: "flex-start",
-    padding: 40,
+    backgroundColor: "#000",
+    padding: 30,
+  },
+
+  blurContainer: {
+    borderWidth: 1,
+    borderRadius: 20,
+    padding: 20,
+    width: "100%",
   },
   heading: {
-    fontSize: 48,
+    fontSize: 50,
     fontWeight: "bold",
-    marginTop: 50,
-    marginBottom: 90,
+    color: "#fff",
     textAlign: "left",
+    fontFamily: "Orbitron-Bold",
   },
   text: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: "left",
-  },
-  button: {
-    marginTop: 20,
-    backgroundColor: "#007BFF",
-    padding: 20,
-    borderRadius: 30,
-  },
-  buttonText: {
+    fontSize: 20,
     color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
+    textAlign: "left",
+    fontFamily: "Orbitron-Regular",
+    marginVertical: 20,
+  },
+  socials: {
+    flexDirection: "row",
+    gap: 20,
+    alignItems: "center",
+    width: "100%",
+    marginTop: 100,
+    marginBottom: 40,
+  },
+
+  button: {
+    backgroundColor: "#fff",
+    padding: 30,
+    paddingHorizontal: 40,
+    borderRadius: 10,
+    shadowColor: "#fff",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
 

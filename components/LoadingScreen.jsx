@@ -46,10 +46,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    gap: 80,
+    gap: 40,
   },
   text: {
-    fontSize: 24,
+    fontSize: 16,
+    letterSpacing: 3,
     fontWeight: "thin",
     textAlign: "center",
   },

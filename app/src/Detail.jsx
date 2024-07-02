@@ -13,7 +13,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import LoadingScreen from "../../components/LoadingScreen";
 import DayItinerary from "../../components/DayItinerary";
 import renderItinerary from "../../components/RenderItinerary";
-import { Home } from "../src/Home";
 
 const Detail = ({ route }) => {
   const navigation = useNavigation();
@@ -74,7 +73,7 @@ const Detail = ({ route }) => {
           <View style={styles.header}>
             <TouchableOpacity
               style={styles.backButton}
-              onPress={() => navigation.navigate("Home")}
+              onPress={() => navigation.navigate("TravelData")}
             >
               <Ionicons name="arrow-back" size={35} color="black" />
             </TouchableOpacity>
