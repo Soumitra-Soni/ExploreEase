@@ -8,8 +8,11 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
-import { BlurView } from "expo-blur";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import {
+  GoogleGenerativeAI,
+  HarmBlockThreshold,
+  HarmCategory,
+} from "@google/generative-ai";
 import BgAnimation from "../../components/BgAnimation";
 import InputForm from "../../components/inputForm";
 import LoadingScreen from "../../components/LoadingScreen";

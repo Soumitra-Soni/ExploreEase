@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     letterSpacing: 3,
-    fontWeight: "thin",
+    fontWeight: "bold",
     textAlign: "center",
+    color: "#fff",
   },
 });
