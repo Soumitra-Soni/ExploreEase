@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
   SafeAreaView,
   Animated,
 } from "react-native";
@@ -89,12 +90,12 @@ const Detail = ({ route }) => {
                 style={styles.navButton}
                 onPress={handlePrevious}
               >
-                <Ionicons name="arrow-back" size={35} color="#fff" />
+                <Ionicons name="arrow-back" size={35} color="#000" />
               </TouchableOpacity>
             )}
             {currentIndex < days.length - 1 && (
               <TouchableOpacity style={styles.navButton} onPress={handleNext}>
-                <Ionicons name="arrow-forward" size={35} color="#fff" />
+                <Ionicons name="arrow-forward" size={35} color="#000" />
               </TouchableOpacity>
             )}
           </View>
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 20,
     backgroundColor: "transparent",
+    marginTop: StatusBar.currentHeight,
   },
   heading: {
     fontSize: 24,
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
   },
   navButton: {
     padding: 20,
-    borderWidth: 2,
+    borderWidth: 4,
     borderRadius: 25,
   },
 });

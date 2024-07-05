@@ -1,8 +1,6 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "react-native";
 import Home from "@/app/src/Home";
 import Detail from "@/app/src/Detail";
-import Splash from "../components/Splash";
 import TravelData from "@/app/src/TravelData";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -17,9 +15,8 @@ export default function Page() {
           headerShown: false,
           statusBarHidden: true,
         }}
-        initialRouteName="Splash"
+        initialRouteName="Home"
       >
-        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="TravelData" component={TravelData} />
         <Stack.Screen name="Detail" component={Detail} />

@@ -12,6 +12,7 @@ const Splash = () => {
         autoPlay
         loop={false}
         speed={1}
+        resizeMode="cover"
         onAnimationFinish={() => {
           console.log("Animation Finished");
           navigation.navigate("Home");

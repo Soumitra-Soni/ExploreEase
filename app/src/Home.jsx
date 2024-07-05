@@ -27,20 +27,22 @@ const Home = () => {
         backgroundColor="#000"
         barStyle="light-content"
       />
-      <Text style={styles.heading}>Welcome to</Text>
-      <Text style={styles.heading}>ExploreEase!</Text>
-      <Text style={styles.text}>
-        Your Personal AI Based Travel Itinerary Generator
-      </Text>
+      <View style={styles.blurContainer}>
+        <Text style={styles.heading}>Welcome to</Text>
+        <Text style={styles.heading}>ExploreEase!</Text>
+        <Text style={styles.text}>
+          Your Personal AI Based Travel Itinerary Generator
+        </Text>
 
-      <View style={styles.socials}>
-        <Ionicons name="logo-github" size={30} color="#fff" />
-        <Ionicons name="logo-linkedin" size={30} color="#fff" />
-        <Ionicons name="logo-twitter" size={30} color="#fff" />
+        <View style={styles.socials}>
+          <Ionicons name="logo-github" size={30} color="#fff" />
+          <Ionicons name="logo-linkedin" size={30} color="#fff" />
+          <Ionicons name="logo-twitter" size={30} color="#fff" />
+        </View>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
+          <Ionicons name="arrow-forward" size={60} color="#000" />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Ionicons name="arrow-forward" size={60} color="#000" />
-      </TouchableOpacity>
     </View>
   );
 };
@@ -49,16 +51,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     backgroundColor: "#000",
     padding: 30,
   },
 
   blurContainer: {
-    borderWidth: 1,
-    borderRadius: 20,
-    padding: 20,
+    height: "100%",
     width: "100%",
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
   heading: {
     fontSize: 50,
