@@ -16,9 +16,9 @@ import {
 import BgAnimation from "../../components/BgAnimation";
 import InputForm from "../../components/inputForm";
 import LoadingScreen from "../../components/LoadingScreen";
-import { GEMINI_API_KEY } from "@env";
 
-const API_KEY = GEMINI_API_KEY;
+// const API_KEY = process.env.GEMINI_API_KEY;
+const API_KEY = "AIzaSyCOrlrpzz5ZI7o7_2LH4WxicYPSIrEdkCE";
 const MODEL_NAME = "gemini-1.5-pro";
 
 const TravelData = () => {
@@ -87,7 +87,7 @@ const TravelData = () => {
 
       const result = await chatSession.sendMessage(prompt);
       const response = result.response;
-      console.log(response.text());
+      // console.log(response.text());
       navigation.navigate("Detail", { itinerary: response.text() });
     } catch (error) {
       console.log(error);

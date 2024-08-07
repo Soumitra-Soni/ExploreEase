@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
-import Home from "@/app/src/Home";
-import Detail from "@/app/src/Detail";
-import TravelData from "@/app/src/TravelData";
+import Home from "../app/src/Home";
+import Detail from "../app/src/Detail";
+import TravelData from "../app/src/TravelData";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
